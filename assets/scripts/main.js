@@ -53,18 +53,23 @@ function sliderUpdateVolume() {
 }
 
 // function to update the volume icon based on the selected volume level
+// also disables the honk button when volume is set to 0, re-enables otherwise
 function updateIcon() {
     if (slider.value >= 67) {
         volumeIcon.src = "./assets/media/icons/volume-level-3.svg";
+        honkBtn.disabled = false;
     }
     else if (slider.value >= 34) {
         volumeIcon.src = "./assets/media/icons/volume-level-2.svg";
+        honkBtn.disabled = false;
     }
     else if (slider.value >= 1) {
         volumeIcon.src = "./assets/media/icons/volume-level-1.svg";
+        honkBtn.disabled = false;
     }
     else {
         volumeIcon.src = "./assets/media/icons/volume-level-0.svg";
+        honkBtn.disabled = true;
     }
 }
 
