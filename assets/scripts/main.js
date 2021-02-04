@@ -2,9 +2,16 @@
 
 let honkBtn = document.getElementById("honk-btn");
 let numberInput = document.getElementById("volume-number");
-let hornSound = document.getElementById("horn-sound");
 let slider = document.getElementById("volume-slider");
+
+let hornSound = document.getElementById("horn-sound");
+
 let volumeIcon = document.getElementById("volume-image");
+let soundImage = document.getElementById("sound-image");
+
+let radioAir = document.getElementById("radio-air-horn");
+let radioCar = document.getElementById("radio-car-horn");
+let radioParty = document.getElementById("radio-party-horn");
 
 // input field changes audio volume and slider
 numberInput.addEventListener("input", numberUpdateVolume);
@@ -15,6 +22,12 @@ slider.addEventListener("input", sliderUpdateVolume);
 // clicking the button plays the sound
 honkBtn.addEventListener("click", cancelSubmission);
 honkBtn.addEventListener("click", honk);
+
+// update the horn image and sound when a radio button is changed
+radioAir.addEventListener("input", updateHorn);
+radioCar.addEventListener("input", updateHorn);
+radioParty.addEventListener("input", updateHorn);
+
 
 // functions for the button click
 function honk() {
@@ -39,6 +52,7 @@ function sliderUpdateVolume() {
     updateIcon();
 }
 
+// function to update the volume icon based on the selected volume level
 function updateIcon() {
     if (slider.value >= 67) {
         volumeIcon.src = "./assets/media/icons/volume-level-3.svg";
@@ -51,5 +65,21 @@ function updateIcon() {
     }
     else {
         volumeIcon.src = "./assets/media/icons/volume-level-0.svg";
+    }
+}
+
+// function to update the horn image and sound when the user selects a radio button
+function updateHorn() {
+    if (radioAir.checked) {
+        soundImage.src = "./assets/media/images/air-horn.svg";
+        hornSound.src = "./assets/media/audio/air-horn.mp3";
+    }
+    else if (radioCar.checked) {
+        soundImage.src = "./assets/media/images/car.svg";
+        hornSound.src = "./assets/media/audio/car-horn.mp3";
+    }
+    else if (radioParty.checked) {
+        soundImage.src = "./assets/media/images/party-horn.svg";
+        hornSound.src = "./assets/media/audio/party-horn.mp3";
     }
 }
